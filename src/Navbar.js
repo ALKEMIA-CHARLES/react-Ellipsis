@@ -1,15 +1,28 @@
+import Pricing from "./pages/Pricing"
+
 export default function Navbar() {
-    return <nav className="nav">
+    const path = window.location.pathname
+    return ( 
+    <nav className="nav">
         <a href="/" className="site-title">
             Ellipsis
         </a>
         <ul>
-            <li className="active">
-                <a href="/pricing">Pricing</a>
-            </li>
-            <li>
-                <a href="/about">about</a>
-            </li>
+            <CustomLink href="/pricing">Pricing</CustomLink>
+            <CustomLink href="/about">About</CustomLink>
         </ul>
     </nav>
+    )
+}
+
+function CustomLink({ href, children, ...props }) {
+    const path = window.location.pathname
+
+    return (
+        <li className={path === href ? "active" : ""}>
+            <a href={href} {...props}>
+                {children}
+                </a>
+        </li>
+    )
 }
